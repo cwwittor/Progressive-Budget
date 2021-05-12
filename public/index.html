@@ -46,14 +46,14 @@
   <script src="/db.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker
-        .register("service-worker.js")
-        .then((registration) => {
-          console.log("Registration complete");
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("service-worker.js").then(reg => {
+          console.log("We found your service worker file!", reg);
         })
         .catch((error) => {
           console.log("Could not find service worker file. Error thrown: "+error);
         });
+      })
     }
   </script>
 </body>

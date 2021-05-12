@@ -1,9 +1,10 @@
 const request = window.indexedDB.open("budget", 1);
 let db;
 
+
 request.onupgradeneeded = (e) => {
     const db = e.target.result;
-    db.createObjectStore("pending", { autoIncrement: true });
+    db.createObjectStore("pending", {autoIncrement: true});
 };
 
 request.onerror = (err) => {
@@ -18,8 +19,8 @@ request.onsuccess = (e) => {
 }
 
 function saveRecord(rec) {
-    const transaction = db.transaction(["pending"], "readwrite");
-    const store = transaction.objectStore("pending");
+    const tx = db.transaction(["pending"], "readwrite");
+    const store = tx.objectStore("pending");
 
     store.add(rec);
 }
